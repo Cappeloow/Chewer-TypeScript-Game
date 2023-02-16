@@ -48,16 +48,30 @@ let randomNr:number = Math.floor(Math.random()*5);
             if (tooth.id === "deadly" && UpperTeeth !== null) {
                 UpperTeeth.id = "down";
                 console.log(UpperTeeth)
-            } else {
-                console.log("Bad");
+            } else if (tooth.id === "") {
+                tooth.id = "sink";
             }
         });
     })
     
 })();
 
-
-
+let div = document.createElement("div");
+div.className = "text";
+document.body.appendChild(div);
+(() => {
+    bottomTeeths.forEach(tooth => {
+     tooth?.addEventListener("mouseover", () => {
+         let p = document.createElement("p");
+         let choosenWord:string = arrayOfStrings[Math.floor(Math.random() * arrayOfStrings.length)];
+         console.log(choosenWord)
+         p.innerText = choosenWord;
+         div.append(p);
+         // div?.innerText = 
+     })
+    })
+ })();
+ 
 
 
 

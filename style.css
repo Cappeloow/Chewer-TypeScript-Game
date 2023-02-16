@@ -9,9 +9,17 @@ body{
     height:100vh;
     width:100%;
     display:flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
     align-items: center;
+}
+
+header {
+    font-size:40px;
+    font-style:italic;
+    color:rgb(7, 59, 57);
+    margin-bottom:40px;
 }
 
 
@@ -64,12 +72,16 @@ section > .toothDownOne, .toothDownTwo,.toothDownThree, .toothDownFour, .toothDo
     margin:15px;
     margin-bottom:100px;
     transition:1s;
-    cursor:pointer
+    cursor:pointer;
+
+    animation: pumping 5s infinite;
 }
 section > .toothDownOne:hover, .toothDownTwo:hover,.toothDownThree:hover, .toothDownFour:hover, .toothDownFive:hover{
 background-color:rgb(255, 255, 255);
 transition:1s;
 }
+
+
 
 
 @keyframes slideup {
@@ -87,4 +99,21 @@ transition:1s;
 
 #down{
     top:270px;
+    transition:0.5s;
+}
+
+#sink{
+    height:50px;
+}
+
+.text {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    width:25%;
+    height:25%;
+    overflow:scroll;
+    background-color:rgb(255, 254, 254);
+    color:rgb(4, 0, 0);
+    border-radius:15px;
 }

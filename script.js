@@ -36,9 +36,24 @@ var randomNr = Math.floor(Math.random() * 5);
                 UpperTeeth.id = "down";
                 console.log(UpperTeeth);
             }
-            else {
-                console.log("Bad");
+            else if (tooth.id === "") {
+                tooth.id = "sink";
             }
+        });
+    });
+})();
+var div = document.createElement("div");
+div.className = "text";
+document.body.appendChild(div);
+(function () {
+    bottomTeeths.forEach(function (tooth) {
+        tooth === null || tooth === void 0 ? void 0 : tooth.addEventListener("mouseover", function () {
+            var p = document.createElement("p");
+            var choosenWord = arrayOfStrings[Math.floor(Math.random() * arrayOfStrings.length)];
+            console.log(choosenWord);
+            p.innerText = choosenWord;
+            div.append(p);
+            // div?.innerText = 
         });
     });
 })();
