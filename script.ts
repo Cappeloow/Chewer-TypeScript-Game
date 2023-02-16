@@ -28,4 +28,10 @@ let fiveBottomTooth = document.querySelector(".toothDownFive")
 let bottomTeeths = [firstBottomTooth, secondBottomTooth, thirdBottomTooth, fourBottomTooth,fiveBottomTooth]
 console.log(bottomTeeths)
 
+// behöver ett ID som är death? alltså att tanden går ner, och detta ID 
+//ska random ges till någon av de tänderna som är uppe, detta id aktiveras 
+// när tanden under har tryckts på
+// de andra tänderna där uppe ska bara stanna kvar, medans bottom teeths ska sjunka lite. 
+
+
 
