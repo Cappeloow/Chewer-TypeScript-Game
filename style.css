@@ -17,50 +17,74 @@ body{
 
 
 section{
-    height:70vh;
+    height:60vh;
     width:100%;
     display:flex;
     justify-content: center;
     align-items: flex-end;
     background-color:red;
-    border-radius:150px;
+    border-radius:140px;
     margin-bottom:10px;
+    position:relative;
 }
 .toothUpOne, .toothUpTwo, .toothUpThree, .toothUpFour, .toothUpFive {
     position:absolute;
     width:100px;
     height:100px;
-    background-color: white;
+    background-color:rgba(255, 255, 255, 0.715);
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
+    animation-name:slideup;
+    animation-duration:3s;
+    top:150px;
 }
 .toothUpOne {
-    left:90px;
-    top:220px;
+    left:15px;
 }
 .toothUpTwo {
-    left:220px;
-    top:220px;
+    left:145px;
+    
 }
 .toothUpThree {
-    left:350px;
-    top:220px;
+    left:275px;
 }
 .toothUpFour {
-    left:480px;
-    top:220px;
+    left:405px;
 }
 .toothUpFive {
-    left:610px;
-    top:220px;
+    left:535px;
 }
 
-section > div {
+section > .toothDownOne, .toothDownTwo,.toothDownThree, .toothDownFour, .toothDownFive {
     height:100px;
     width:100px;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
-    background-color:White;
+    background-color:rgba(255, 255, 255, 0.715);
     margin:15px;
     margin-bottom:100px;
+    transition:1s;
+    cursor:pointer
+}
+section > .toothDownOne:hover, .toothDownTwo:hover,.toothDownThree:hover, .toothDownFour:hover, .toothDownFive:hover{
+background-color:rgb(255, 255, 255);
+transition:1s;
+}
+
+
+@keyframes slideup {
+    from {
+     top:270px;
+    }
+    50%{
+        top:120px;
+    }  
+    to {
+        top:150px;
+    }
+  }
+
+
+#down{
+    top:270px;
 }
