@@ -18,7 +18,7 @@ var thirdBottomTooth = document.querySelector(".toothDownThree");
 var fourBottomTooth = document.querySelector(".toothDownFour");
 var fiveBottomTooth = document.querySelector(".toothDownFive");
 var bottomTeeths = [firstBottomTooth, secondBottomTooth, thirdBottomTooth, fourBottomTooth, fiveBottomTooth];
-var arrayOfStrings = ["Are you sure?", "You'll regret your actions!", "DON'T!!", "Soon you'll be Tomato paste", "What if... you die?", "This one is safe", "Don't worry my friend", "Time is ticking.."];
+var arrayOfStrings = ["Are you sure?", "STOOOOOP!!!", "You'll regret your actions!", "DON'T!!", "Soon you'll be tomato paste", "What if... you die?", "This one is safe", "Don't worry my friend", "Time is ticking.."];
 var randomNr = Math.floor(Math.random() * 5);
 (function () {
     var _a, _b;
@@ -45,21 +45,29 @@ var randomNr = Math.floor(Math.random() * 5);
 var div = document.createElement("div");
 div.className = "text";
 document.body.appendChild(div);
+var colors = ["red", "blue", "orange", "purple", "pink", "green"];
 (function () {
     bottomTeeths.forEach(function (tooth) {
         tooth === null || tooth === void 0 ? void 0 : tooth.addEventListener("mouseover", function () {
             var p = document.createElement("p");
             var choosenWord = arrayOfStrings[Math.floor(Math.random() * arrayOfStrings.length)];
-            console.log(choosenWord);
             p.innerText = choosenWord;
+            p.className = "stressText";
+            p.style.color = randColors();
             div.append(p);
-            // div?.innerText = 
+            setTimeout(function () {
+                p.remove();
+            }, 2000);
         });
     });
 })();
-// behöver ett ID som är beforedeath alltså sen death ontrigger? alltså att tanden går ner, och detta ID 
-//ska random ges till någon av de tänderna som är uppe, detta id aktiveras 
+function randColors() {
+    var choosenColor = colors[Math.floor(Math.random() * colors.length)];
+    return choosenColor;
+}
+// behöver ett ID som är beforedeath alltså sen death ontrigger? alltså att tanden går ner, och detta ID
+//ska random ges till någon av de tänderna som är uppe, detta id aktiveras
 // när tanden under har tryckts på
-// de andra tänderna där uppe ska bara stanna kvar, medans bottom teeths ska sjunka lite. 
+// de andra tänderna där uppe ska bara stanna kvar, medans bottom teeths ska sjunka lite.
 //vill vi ha en counter av hur många gånger man har lyckats klara sig från bettet?
 // kanske lite text som gör en osäker på sina val, timer?

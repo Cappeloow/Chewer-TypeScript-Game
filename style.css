@@ -1,11 +1,18 @@
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+
+
 *{
+    font-family: poppins;
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
 body{
-    background:rgb(0, 255, 0);
+    background:rgb(82, 206, 82);
     height:100vh;
     width:100%;
     display:flex;
@@ -19,9 +26,13 @@ header {
     font-size:40px;
     font-style:italic;
     color:rgb(7, 59, 57);
-    margin-bottom:40px;
-}
 
+    margin-bottom:40px;
+    border-top:2px solid rgba(255, 255, 255, 0.396);
+}
+header > h1 {
+    letter-spacing: 35px;
+}
 
 
 section{
@@ -30,7 +41,7 @@ section{
     display:flex;
     justify-content: center;
     align-items: flex-end;
-    background-color:red;
+    background-color:rgb(155, 13, 13);
     border-radius:140px;
     margin-bottom:10px;
     position:relative;
@@ -98,22 +109,37 @@ transition:1s;
 
 
 #down{
-    top:270px;
+    top:280px;
     transition:0.5s;
+    background-color: rgba(0, 0, 0, 0.677);
 }
 
 #sink{
     height:50px;
+    
 }
 
+.text::before{
+    content:"SOURCE: TRUST ME BRO";
+    font-size:30px;
+}
 .text {
     display:flex;
     justify-content: center;
+    align-self: flex-start;
     flex-direction: column;
-    width:25%;
-    height:25%;
-    overflow:scroll;
+    align-items: center;
+    width:400px;
+    height:15%;
+    margin-left:15px;
+    overflow:hidden;
     background-color:rgb(255, 254, 254);
     color:rgb(4, 0, 0);
     border-radius:15px;
+    
+}
+
+
+.stressText{
+font-size:20px;
 }
