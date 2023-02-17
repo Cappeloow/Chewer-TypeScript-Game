@@ -96,6 +96,27 @@ const choosenColor = colors[Math.floor(Math.random()* colors.length)]
 return choosenColor; 
 }
 
+let Highscore:number[] = []; //vill vi göra ett object som ska vara en spelare, 
+//där hans score och namn kommer med på en lista? 
+// vi vill kanske ha en div innan gamet där man måste inputa name 
+//som vi sen kan lägga i ett object
+(function points ():void {
+    fiveBottomTooth
+
+    //kanske få slänga in detta i click functionen? 
+    // vi behöver lyssna på om det är clickat och att det inte är #id sink
+    //så ger vi poäng tills eller om vi har utlöst id #down.
+    // om det har kommit en id #down så måste vi skapa en div som säger gameover
+    // vi vill också storea det i en array
+
+
+    //topTeeths
+})();
+
+// function topScore () {
+// presumably we could fit an array and list the best high score here.
+// }
+
 /***following blob***/
 // const section = document.querySelector("section");
 // const blob = document.getElementById("blob");
