@@ -21,6 +21,15 @@ body{
     align-content: center;
     align-items: center;
 }
+#blob{
+    background-color:rgb(50, 249, 0);
+    height:100px;
+    aspect-ratio:1;
+    position:absolute;
+    z-index: 3;
+    border-radius:500px;
+}
+
 
 header {
     font-size:40px;
@@ -83,7 +92,7 @@ section > .toothDownOne, .toothDownTwo,.toothDownThree, .toothDownFour, .toothDo
     margin:15px;
     margin-bottom:100px;
     transition:1s;
-    cursor:pointer;
+    cursor:grab;
 
     animation: pumping 5s infinite;
 }
@@ -92,6 +101,15 @@ background-color:rgb(255, 255, 255);
 transition:1s;
 }
 
+
+@keyframes transparent {
+    from {
+     opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+  }
 
 
 
@@ -109,9 +127,9 @@ transition:1s;
 
 
 #down{
-    top:280px;
+    top:240px;
     transition:0.5s;
-    background-color: rgba(0, 0, 0, 0.677);
+    background-color: rgb(0, 0, 0);
 }
 
 #sink{
@@ -142,4 +160,6 @@ transition:1s;
 
 .stressText{
 font-size:20px;
+animation-name:transparent;
+animation-duration:6s;
 }

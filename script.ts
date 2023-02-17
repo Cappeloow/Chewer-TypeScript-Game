@@ -10,6 +10,19 @@
 // console.log(totalSumWithMathpow(myArray))
 // console.log(myArray);
 
+/********CODE THOUGHTS*******/
+// behöver ett ID som är beforedeath alltså sen death ontrigger? alltså att tanden går ner, och detta ID
+//ska random ges till någon av de tänderna som är uppe, detta id aktiveras
+// när tanden under har tryckts på
+// de andra tänderna där uppe ska bara stanna kvar, medans bottom teeths ska sjunka lite.
+
+//vill vi ha en counter av hur många gånger man har lyckats klara sig från bettet?
+// kanske lite text som gör en osäker på sina val, timer?
+
+
+
+
+
 
 let firstUpperTooth = document.querySelector(".toothUpOne")
 let secUpperTooth = document.querySelector(".toothUpTwo")
@@ -69,27 +82,32 @@ let colors:string[] = ["red","blue","orange","purple","pink","green"];
             let choosenWord: string = arrayOfStrings[Math.floor(Math.random() * arrayOfStrings.length)];
             p.innerText = choosenWord;
             p.className="stressText";
-            p.style.color =randColors();
+            p.style.color =randColors(colors);
             div.append(p); 
             setTimeout(() => {
                 p.remove();
-              }, 2000)
+              }, 3000)
         })
     })
 })();
 
-function randColors ():string{
+function randColors (arr:any[]):string{ //kanske kan använda denna funktionen till mera saker?
 const choosenColor = colors[Math.floor(Math.random()* colors.length)]
 return choosenColor; 
 }
 
+/***following blob***/
+// const section = document.querySelector("section");
+// const blob = document.getElementById("blob");
+// section!.onpointermove = event => {
+//     console.log(event.clientX);
+//     let {clientX, clientY} = event; 
+//     if (blob) {
+//         blob.style.left = `${clientX}px`;
+//         blob.style.top = `${clientY}px`;
+//     }  else {
+//         console.error("Blob element not found.");
+//     }
 
-// behöver ett ID som är beforedeath alltså sen death ontrigger? alltså att tanden går ner, och detta ID
-//ska random ges till någon av de tänderna som är uppe, detta id aktiveras
-// när tanden under har tryckts på
-// de andra tänderna där uppe ska bara stanna kvar, medans bottom teeths ska sjunka lite.
-
-
-//vill vi ha en counter av hur många gånger man har lyckats klara sig från bettet?
-// kanske lite text som gör en osäker på sina val, timer?
+// }
 
