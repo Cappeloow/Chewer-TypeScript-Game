@@ -30,21 +30,29 @@ var randomNr = Math.floor(Math.random() * 5);
 (function () {
     var _a, _b;
     var deadlyTooth = bottomTeeths.filter(function (tooth, index) { return index === randomNr; });
-    var firstTooth = (_a = deadlyTooth === null || deadlyTooth === void 0 ? void 0 : deadlyTooth[0]) !== null && _a !== void 0 ? _a : null; // Destructure the first element from the array
+    var firstTooth = (_a = deadlyTooth === null || deadlyTooth === void 0 ? void 0 : deadlyTooth[0]) !== null && _a !== void 0 ? _a : null;
     var upperTeethDeadly = topTeeths.filter(function (tooth, index) { return index === randomNr; });
     var UpperTeeth = (_b = upperTeethDeadly === null || upperTeethDeadly === void 0 ? void 0 : upperTeethDeadly[0]) !== null && _b !== void 0 ? _b : null;
     if (firstTooth) {
         firstTooth.id = "deadly";
     }
+    var playerPoints = 0;
+    var foundTooth = false;
     bottomTeeths.forEach(function (tooth) {
         tooth === null || tooth === void 0 ? void 0 : tooth.addEventListener("click", function () {
             console.log(tooth);
             if (tooth.id === "deadly" && UpperTeeth !== null) {
                 UpperTeeth.id = "down";
-                console.log(UpperTeeth);
+                setTimeout(function () {
+                    isGameover(playerPoints);
+                }, 3000);
+                foundTooth = true;
             }
-            else if (tooth.id === "") {
+            else if (tooth.id === "" && !foundTooth) {
+                console.log(foundTooth);
                 tooth.id = "sink";
+                playerPoints = playerPoints + 1;
+                console.log(playerPoints);
             }
         });
     });
@@ -72,6 +80,37 @@ function randColors(arr) {
     var choosenColor = colors[Math.floor(Math.random() * colors.length)];
     return choosenColor;
 }
+var Highscore = []; //vill vi göra ett object som ska vara en spelare, 
+//där hans score och namn kommer med på en lista? 
+// vi vill kanske ha en div innan gamet där man måste inputa name 
+//som vi sen kan lägga i ett object
+function isGameover(points) {
+    Highscore.push(points);
+    console.log(Highscore);
+    var gameoverDiv = document.createElement("div");
+    var h1 = document.createElement("h1");
+    var p = document.createElement("p");
+    var continueBtn = document.createElement("button");
+    continueBtn.innerText = "Try Again";
+    p.innerText = "Your total score: ".concat(points);
+    h1.innerText = points <= 2 ? "YOU SHOULD BE PUT IN JAIL" : "NICELY DONE MATE";
+    gameoverDiv.className = "gameover";
+    gameoverDiv.append(h1, p, continueBtn);
+    document.body.append(gameoverDiv);
+    continueBtn.addEventListener("click", function () {
+        location.reload();
+    });
+    //kanske få slänga in detta i click functionen? 
+    // vi behöver lyssna på om det är clickat och att det inte är #id sink
+    //så ger vi poäng tills eller om vi har utlöst id #down.
+    // om det har kommit en id #down så måste vi skapa en div som säger gameover
+    // vi vill också storea det i en array
+    //topTeeths
+}
+;
+// function topScore () {
+// presumably we could fit an array and list the best high score here.
+// }
 /***following blob***/
 // const section = document.querySelector("section");
 // const blob = document.getElementById("blob");

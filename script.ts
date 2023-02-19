@@ -10,6 +10,7 @@
 // console.log(totalSumWithMathpow(myArray))
 // console.log(myArray);
 
+
 /********CODE THOUGHTS*******/
 // behöver ett ID som är beforedeath alltså sen death ontrigger? alltså att tanden går ner, och detta ID
 //ska random ges till någon av de tänderna som är uppe, detta id aktiveras
@@ -46,7 +47,7 @@ let randomNr: number = Math.floor(Math.random() * 5);
 
 (() => {
     const deadlyTooth = bottomTeeths.filter((tooth, index) => index === randomNr);
-    const firstTooth = deadlyTooth?.[0] ?? null; // Destructure the first element from the array
+    const firstTooth = deadlyTooth?.[0] ?? null;
     const upperTeethDeadly = topTeeths.filter((tooth, index) => index === randomNr)
     const UpperTeeth = upperTeethDeadly?.[0] ?? null
 
@@ -54,16 +55,25 @@ let randomNr: number = Math.floor(Math.random() * 5);
     if (firstTooth) {
         firstTooth.id = "deadly";
     }
-
+    let playerPoints = 0;
+    let foundTooth:boolean = false;
     bottomTeeths.forEach(tooth => {
         tooth?.addEventListener("click", () => {
+            
             console.log(tooth);
             if (tooth.id === "deadly" && UpperTeeth !== null) {
                 UpperTeeth.id = "down";
-                console.log(UpperTeeth)
-            } else if (tooth.id === "") {
+                setTimeout(() => {
+                    isGameover(playerPoints);
+                  }, 3000);
+            foundTooth = true;
+
+            } else if (tooth.id === "" && !foundTooth) {
+                console.log(foundTooth);
                 tooth.id = "sink";
-            }
+                playerPoints=  playerPoints + 1;
+                console.log(playerPoints);
+            } 
         });
     })
 
@@ -100,9 +110,25 @@ let Highscore:number[] = []; //vill vi göra ett object som ska vara en spelare,
 //där hans score och namn kommer med på en lista? 
 // vi vill kanske ha en div innan gamet där man måste inputa name 
 //som vi sen kan lägga i ett object
-(function points ():void {
-    fiveBottomTooth
+function isGameover (points:number):void {
+    Highscore.push(points)
+    console.log(Highscore);
+    let gameoverDiv = document.createElement("div");
+    let h1 = document.createElement("h1");
+    let p = document.createElement("p");
+    let continueBtn = document.createElement("button");
+    continueBtn.innerText = "Try Again";
+    p.innerText = `Your total score: ${points}`;
 
+    h1.innerText =points<=2 ? "YOU SHOULD BE PUT IN JAIL" :"NICELY DONE MATE"  
+    gameoverDiv.className = "gameover";
+    gameoverDiv.append(h1,p, continueBtn);
+    document.body.append(gameoverDiv);
+
+
+    continueBtn.addEventListener("click", () => {
+        location.reload();
+    })
     //kanske få slänga in detta i click functionen? 
     // vi behöver lyssna på om det är clickat och att det inte är #id sink
     //så ger vi poäng tills eller om vi har utlöst id #down.
@@ -111,7 +137,7 @@ let Highscore:number[] = []; //vill vi göra ett object som ska vara en spelare,
 
 
     //topTeeths
-})();
+};
 
 // function topScore () {
 // presumably we could fit an array and list the best high score here.

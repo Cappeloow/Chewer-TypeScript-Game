@@ -100,7 +100,7 @@ section > .toothDownOne, .toothDownTwo,.toothDownThree, .toothDownFour, .toothDo
     animation: pumping 5s infinite;
 }
 section > .toothDownOne:hover, .toothDownTwo:hover,.toothDownThree:hover, .toothDownFour:hover, .toothDownFive:hover{
-background-color:rgb(255, 255, 255);
+background-color:rgba(255, 255, 255, 0.871);
 transition:1s;
 }
 
@@ -166,3 +166,17 @@ font-size:20px;
 animation-name:transparent;
 animation-duration:6s;
 }
+
+
+.gameover{
+    width:100%;
+    height:100%;
+    position: absolute;
+    color:rgb(255, 255, 255);
+    background-color:rgb(0, 0, 0);
+    font-size: 30px;
+    font-style:italic;
+    display:flex;
+    flex-direction:column;
+}
+
