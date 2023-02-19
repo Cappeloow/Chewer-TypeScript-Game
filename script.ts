@@ -110,6 +110,13 @@ let Highscore:number[] = []; //vill vi göra ett object som ska vara en spelare,
 //där hans score och namn kommer med på en lista? 
 // vi vill kanske ha en div innan gamet där man måste inputa name 
 //som vi sen kan lägga i ett object
+(function displayHighscore (){
+
+})();
+
+
+
+
 function isGameover (points:number):void {
     Highscore.push(points)
     console.log(Highscore);
@@ -122,6 +129,7 @@ function isGameover (points:number):void {
 
     h1.innerText =points<=2 ? "YOU SHOULD BE PUT IN JAIL" :"NICELY DONE MATE"  
     gameoverDiv.className = "gameover";
+    
     gameoverDiv.append(h1,p, continueBtn);
     document.body.append(gameoverDiv);
 

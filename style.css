@@ -177,6 +177,20 @@ animation-duration:6s;
     font-size: 30px;
     font-style:italic;
     display:flex;
-    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column
 }
 
+.gameover > button {
+    background-color:rgb(43, 140, 191);
+    width:100px;
+    height:50px;
+    margin:20px;
+    border-radius:10px;
+}
+.gameover > button:hover {
+    background-color:rgb(22, 172, 189);
+    cursor:pointer;
+    transition:1s;
+}
