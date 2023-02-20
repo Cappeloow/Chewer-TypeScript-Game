@@ -49,7 +49,13 @@ name: string | number,
 points: number,
 age: number
 }
+
 let myPlayer: Player;
+let Highscore:Player[] = []; 
+
+(function init(){
+    localStorage.setItem("highscore", JSON.stringify(Highscore));
+})();
 
 (function createStart () {
 let {btnSubmit,startDiv,inputName, inputAge} = createElements();
@@ -57,8 +63,10 @@ let {btnSubmit,startDiv,inputName, inputAge} = createElements();
 btnSubmit.addEventListener("click", () => {
 myPlayer = createPlayer(inputName,inputAge);
 
-startDiv.remove();
-gameLogic(myPlayer);
+setTimeout(() => {
+    startDiv.remove();
+    gameLogic(myPlayer);
+  }, 1000)
 })
 })();
 
@@ -158,7 +166,7 @@ const choosenColor = colors[Math.floor(Math.random()* colors.length)]
 return choosenColor; 
 }
 
-let Highscore:number[] = []; //vill vi göra ett object som ska vara en spelare, 
+//vill vi göra ett object som ska vara en spelare, 
 //där hans score och namn kommer med på en lista? 
 // vi vill kanske ha en div innan gamet där man måste inputa name 
 //som vi sen kan lägga i ett object
@@ -170,7 +178,7 @@ let Highscore:number[] = []; //vill vi göra ett object som ska vara en spelare,
 
 
 function isGameover (player:Player):void {
-    Highscore.push(player.points)
+    Highscore.push(player);
     console.log(Highscore);
     let gameoverDiv = document.createElement("div");
     let h1 = document.createElement("h1");

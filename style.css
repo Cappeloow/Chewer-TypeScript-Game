@@ -179,7 +179,8 @@ animation-duration:6s;
     display:flex;
     align-items: center;
     justify-content: center;
-    flex-direction:column
+    flex-direction:column;
+    letter-spacing:5px;
 }
 
 .gameover > button {
@@ -215,12 +216,14 @@ margin:10px;
 
 .Start > h1 {
     font-size:70px;
+    letter-spacing:10px;
 }
 
 .Start > p {
     font-style:italic;
     font-size:18px;
     margin:30px;
+    letter-spacing:2px;
 }
 
 .Start > button {

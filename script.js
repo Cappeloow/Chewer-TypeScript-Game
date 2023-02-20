@@ -28,12 +28,18 @@ var bottomTeeths = [firstBottomTooth, secondBottomTooth, thirdBottomTooth, fourB
 var arrayOfStrings = ["Are you sure?", "STOOOOOP!!!", "You'll regret your actions!", "DON'T!!", "Soon you'll be tomato paste", "What if... you die?", "This one is safe", "Don't worry my friend", "Time is ticking.."];
 var randomNr = Math.floor(Math.random() * 5);
 var myPlayer;
+var Highscore = [];
+(function init() {
+    localStorage.setItem("highscore", JSON.stringify(Highscore));
+})();
 (function createStart() {
     var _a = createElements(), btnSubmit = _a.btnSubmit, startDiv = _a.startDiv, inputName = _a.inputName, inputAge = _a.inputAge;
     btnSubmit.addEventListener("click", function () {
         myPlayer = createPlayer(inputName, inputAge);
-        startDiv.remove();
-        gameLogic(myPlayer);
+        setTimeout(function () {
+            startDiv.remove();
+            gameLogic(myPlayer);
+        }, 1000);
     });
 })();
 function createPlayer(inputName, inputAge) {
@@ -115,7 +121,7 @@ function randColors(arr) {
     var choosenColor = colors[Math.floor(Math.random() * colors.length)];
     return choosenColor;
 }
-var Highscore = []; //vill vi göra ett object som ska vara en spelare, 
+//vill vi göra ett object som ska vara en spelare, 
 //där hans score och namn kommer med på en lista? 
 // vi vill kanske ha en div innan gamet där man måste inputa name 
 //som vi sen kan lägga i ett object
@@ -123,7 +129,7 @@ var Highscore = []; //vill vi göra ett object som ska vara en spelare,
 })();
 //RANDOM SUPER TOOTH?
 function isGameover(player) {
-    Highscore.push(player.points);
+    Highscore.push(player);
     console.log(Highscore);
     var gameoverDiv = document.createElement("div");
     var h1 = document.createElement("h1");
