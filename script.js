@@ -38,11 +38,19 @@ var Highscore = [];
 (function createStart() {
     var _a = createElements(), btnSubmit = _a.btnSubmit, startDiv = _a.startDiv, inputName = _a.inputName, inputAge = _a.inputAge;
     btnSubmit.addEventListener("click", function () {
-        myPlayer = createPlayer(inputName, inputAge);
-        setTimeout(function () {
-            startDiv.remove();
-            gameLogic(myPlayer);
-        }, 1000);
+        if (inputName.value.length >= 2 && inputAge.value.length >= 1) {
+            myPlayer = createPlayer(inputName, inputAge);
+            inputName.style.border = "3px solid green";
+            inputAge.style.border = "3px solid green";
+            setTimeout(function () {
+                startDiv.remove();
+                gameLogic(myPlayer);
+            }, 1000);
+        }
+        else {
+            inputName.style.border = "3px solid red";
+            inputAge.style.border = "3px solid red";
+        }
     });
 })();
 function createPlayer(inputName, inputAge) {
@@ -67,6 +75,15 @@ function createElements() {
     h1.innerText = "Hi Player!";
     p.innerText = "Welcome to Chewer, please fill out your information and hit the button to start the game!";
     startDiv.append(h1, p, inputName, inputAge, btnSubmit);
+    if (Highscore.length >= 1) {
+        Highscore.sort(function (a, b) { return b.points - a.points; });
+        var divOfTopPlayer = document.createElement("div");
+        divOfTopPlayer.id = "divOfTopList";
+        var toplist = document.createElement("p");
+        toplist.innerText = "TOP: ".concat(Highscore[0].name.toUpperCase(), " - ").concat(Highscore[0].points.toString(), " points");
+        divOfTopPlayer.append(toplist);
+        startDiv.append(divOfTopPlayer);
+    }
     document.body.append(startDiv);
     return { btnSubmit: btnSubmit, startDiv: startDiv, inputName: inputName, inputAge: inputAge };
 }
@@ -145,12 +162,6 @@ function isGameover(player) {
     p.innerText = "".concat(player.name, " score: ").concat(player.points);
     h1.innerText = player.points <= 2 ? "YOU SHOULD BE PUT IN JAIL" : "NICELY DONE MATE";
     gameoverDiv.className = "gameover";
-    /* Highscore.forEach(item=> {
-         let toplist = document.createElement("p") as HTMLElement;
-         toplist.innerText= item.name;
-         gameoverDiv.append(toplist);
-     });
-     */
     gameoverDiv.append(h1, p, continueBtn);
     document.body.append(gameoverDiv);
     //can we do like a gamble here? like you take in your totalpoints and if you guess the right box you can double

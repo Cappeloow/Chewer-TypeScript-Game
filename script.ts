@@ -63,13 +63,23 @@ let Highscore:Player[] = [];
 (function createStart () {
 let {btnSubmit,startDiv,inputName, inputAge} = createElements();
 
-btnSubmit.addEventListener("click", () => {
-myPlayer = createPlayer(inputName,inputAge);
 
-setTimeout(() => {
-    startDiv.remove();
-    gameLogic(myPlayer);
-  }, 1000)
+btnSubmit.addEventListener("click", () => {
+if (inputName.value.length >= 2 && inputAge.value.length >=1){
+    myPlayer = createPlayer(inputName,inputAge);
+
+    inputName.style.border = "3px solid green";
+    inputAge.style.border = "3px solid green";
+    setTimeout(() => {
+        startDiv.remove();
+        gameLogic(myPlayer);
+      }, 1000)
+     
+} else {
+    inputName.style.border = "3px solid red";
+    inputAge.style.border = "3px solid red";
+}
+
 })
 })();
 
@@ -99,7 +109,19 @@ btnSubmit.innerText = "Let's go"
 h1.innerText = "Hi Player!";
 p.innerText = `Welcome to Chewer, please fill out your information and hit the button to start the game!`
 
+
 startDiv.append(h1,p,inputName, inputAge, btnSubmit);
+
+if (Highscore.length >=1){
+    Highscore.sort((a,b) => b.points -a.points);
+    let divOfTopPlayer = document.createElement("div") as HTMLElement;
+    divOfTopPlayer.id = "divOfTopList";
+    let toplist = document.createElement("p") as HTMLElement;
+    toplist.innerText= `TOP: ${Highscore[0].name.toUpperCase()} - ${Highscore[0].points.toString()} points`;
+    divOfTopPlayer.append(toplist);
+    startDiv.append(divOfTopPlayer);
+}
+
 document.body.append(startDiv);
 return {btnSubmit, startDiv, inputName, inputAge };
 }
@@ -194,12 +216,7 @@ function isGameover (player:Player):void {
     h1.innerText =player.points<=2 ? "YOU SHOULD BE PUT IN JAIL" :"NICELY DONE MATE"  
     gameoverDiv.className = "gameover";
     
-   /* Highscore.forEach(item=> {
-        let toplist = document.createElement("p") as HTMLElement;
-        toplist.innerText= item.name;
-        gameoverDiv.append(toplist);
-    });
-    */
+    
 
     gameoverDiv.append(h1,p, continueBtn);
     document.body.append(gameoverDiv);
