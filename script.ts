@@ -115,7 +115,7 @@ function gameLogic (player:Player) {
                 
                 UpperTeeth.id = "down";
                 setTimeout(() => {
-                    isGameover(player.points);
+                    isGameover(player);
                   }, 3000);
             foundTooth = true;
 
@@ -169,17 +169,17 @@ let Highscore:number[] = []; //vill vi göra ett object som ska vara en spelare,
 //RANDOM SUPER TOOTH?
 
 
-function isGameover (points:number):void {
-    Highscore.push(points)
+function isGameover (player:Player):void {
+    Highscore.push(player.points)
     console.log(Highscore);
     let gameoverDiv = document.createElement("div");
     let h1 = document.createElement("h1");
     let p = document.createElement("p");
     let continueBtn = document.createElement("button");
     continueBtn.innerText = "Try Again";
-    p.innerText = `Your total score: ${points}`;
+    p.innerText = `${player.name} score: ${player.points}`;
 
-    h1.innerText =points<=2 ? "YOU SHOULD BE PUT IN JAIL" :"NICELY DONE MATE"  
+    h1.innerText =player.points<=2 ? "YOU SHOULD BE PUT IN JAIL" :"NICELY DONE MATE"  
     gameoverDiv.className = "gameover";
     
     gameoverDiv.append(h1,p, continueBtn);

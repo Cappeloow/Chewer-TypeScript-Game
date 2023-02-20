@@ -77,7 +77,7 @@ function gameLogic(player) {
             if (tooth.id === "deadly" && UpperTeeth !== null) {
                 UpperTeeth.id = "down";
                 setTimeout(function () {
-                    isGameover(player.points);
+                    isGameover(player);
                 }, 3000);
                 foundTooth = true;
             }
@@ -122,16 +122,16 @@ var Highscore = []; //vill vi göra ett object som ska vara en spelare,
 (function displayHighscore() {
 })();
 //RANDOM SUPER TOOTH?
-function isGameover(points) {
-    Highscore.push(points);
+function isGameover(player) {
+    Highscore.push(player.points);
     console.log(Highscore);
     var gameoverDiv = document.createElement("div");
     var h1 = document.createElement("h1");
     var p = document.createElement("p");
     var continueBtn = document.createElement("button");
     continueBtn.innerText = "Try Again";
-    p.innerText = "Your total score: ".concat(points);
-    h1.innerText = points <= 2 ? "YOU SHOULD BE PUT IN JAIL" : "NICELY DONE MATE";
+    p.innerText = "".concat(player.name, " score: ").concat(player.points);
+    h1.innerText = player.points <= 2 ? "YOU SHOULD BE PUT IN JAIL" : "NICELY DONE MATE";
     gameoverDiv.className = "gameover";
     gameoverDiv.append(h1, p, continueBtn);
     document.body.append(gameoverDiv);
