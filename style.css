@@ -188,12 +188,15 @@ animation-duration:6s;
     width:100px;
     height:50px;
     margin:20px;
+    font-size:17px;
     border-radius:10px;
+    transition:1s;
 }
 .gameover > button:hover {
     background-color:rgb(22, 172, 189);
     cursor:pointer;
     transition:1s;
+    color:rgba(245, 245, 245, 0.593);
 }
 
 
@@ -241,6 +244,7 @@ margin:10px;
     padding-left:5px;
     font-size:20px;
     font-style:italic;
+    
 }
 
 .Start > button:hover {

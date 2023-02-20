@@ -30,7 +30,10 @@ var randomNr = Math.floor(Math.random() * 5);
 var myPlayer;
 var Highscore = [];
 (function init() {
-    localStorage.setItem("highscore", JSON.stringify(Highscore));
+    var storedHighscore = localStorage.getItem("highscore");
+    if (storedHighscore) {
+        Highscore = JSON.parse(storedHighscore);
+    }
 })();
 (function createStart() {
     var _a = createElements(), btnSubmit = _a.btnSubmit, startDiv = _a.startDiv, inputName = _a.inputName, inputAge = _a.inputAge;
@@ -57,6 +60,8 @@ function createElements() {
     var p = document.createElement("p");
     var inputName = document.createElement("input");
     var inputAge = document.createElement("input");
+    inputAge.placeholder = "YOUR AGE";
+    inputName.placeholder = "YOUR NAME";
     var btnSubmit = document.createElement("button");
     btnSubmit.innerText = "Let's go";
     h1.innerText = "Hi Player!";
@@ -130,6 +135,7 @@ function randColors(arr) {
 //RANDOM SUPER TOOTH?
 function isGameover(player) {
     Highscore.push(player);
+    localStorage.setItem("highscore", JSON.stringify(Highscore));
     console.log(Highscore);
     var gameoverDiv = document.createElement("div");
     var h1 = document.createElement("h1");
@@ -139,6 +145,12 @@ function isGameover(player) {
     p.innerText = "".concat(player.name, " score: ").concat(player.points);
     h1.innerText = player.points <= 2 ? "YOU SHOULD BE PUT IN JAIL" : "NICELY DONE MATE";
     gameoverDiv.className = "gameover";
+    /* Highscore.forEach(item=> {
+         let toplist = document.createElement("p") as HTMLElement;
+         toplist.innerText= item.name;
+         gameoverDiv.append(toplist);
+     });
+     */
     gameoverDiv.append(h1, p, continueBtn);
     document.body.append(gameoverDiv);
     //can we do like a gamble here? like you take in your totalpoints and if you guess the right box you can double

@@ -45,7 +45,7 @@ let arrayOfStrings: string[] = ["Are you sure?", "STOOOOOP!!!", "You'll regret y
 let randomNr: number = Math.floor(Math.random() * 5);
 
 interface Player{
-name: string | number,
+name: string,
 points: number,
 age: number
 }
@@ -54,7 +54,10 @@ let myPlayer: Player;
 let Highscore:Player[] = []; 
 
 (function init(){
-    localStorage.setItem("highscore", JSON.stringify(Highscore));
+        const storedHighscore = localStorage.getItem("highscore");
+        if (storedHighscore) {
+          Highscore = JSON.parse(storedHighscore);
+        } 
 })();
 
 (function createStart () {
@@ -89,8 +92,8 @@ const h1 = document.createElement("h1") as HTMLElement;
 const p = document.createElement("p") as HTMLElement;
 const inputName = document.createElement("input") as HTMLInputElement;
 const inputAge = document.createElement("input") as HTMLInputElement;
-
-
+inputAge.placeholder ="YOUR AGE";
+inputName.placeholder ="YOUR NAME";
 const btnSubmit = document.createElement("button") as HTMLButtonElement;
 btnSubmit.innerText = "Let's go"
 h1.innerText = "Hi Player!";
@@ -179,6 +182,7 @@ return choosenColor;
 
 function isGameover (player:Player):void {
     Highscore.push(player);
+    localStorage.setItem("highscore", JSON.stringify(Highscore));
     console.log(Highscore);
     let gameoverDiv = document.createElement("div");
     let h1 = document.createElement("h1");
@@ -190,6 +194,13 @@ function isGameover (player:Player):void {
     h1.innerText =player.points<=2 ? "YOU SHOULD BE PUT IN JAIL" :"NICELY DONE MATE"  
     gameoverDiv.className = "gameover";
     
+   /* Highscore.forEach(item=> {
+        let toplist = document.createElement("p") as HTMLElement;
+        toplist.innerText= item.name;
+        gameoverDiv.append(toplist);
+    });
+    */
+
     gameoverDiv.append(h1,p, continueBtn);
     document.body.append(gameoverDiv);
     //can we do like a gamble here? like you take in your totalpoints and if you guess the right box you can double
