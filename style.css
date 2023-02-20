@@ -130,7 +130,7 @@ transition:1s;
 
 
 #down{
-    top:240px;
+    top:270px;
     transition:0.5s;
     background-color: rgb(0, 0, 0);
 }
@@ -194,3 +194,58 @@ animation-duration:6s;
     cursor:pointer;
     transition:1s;
 }
+
+
+.Start {
+    position:absolute;
+    z-index:3;
+    width:100%;
+    height:100%;
+    background-color:black;
+    color:White;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Start > h1, p, input, button {
+margin:10px;
+}
+
+.Start > h1 {
+    font-size:70px;
+}
+
+.Start > p {
+    font-style:italic;
+    font-size:18px;
+    margin:30px;
+}
+
+.Start > button {
+    font-style:italic;
+    background-color:rgb(43, 140, 191);
+    width:100px;
+    height:50px;
+    margin:20px;
+    border-radius:10px;
+    font-size:17px;
+}
+.Start > input {
+    height:50px;
+    width:200px;
+    padding-left:5px;
+    font-size:20px;
+    font-style:italic;
+}
+
+.Start > button:hover {
+    background-color:rgb(22, 172, 189);
+    cursor:pointer;
+    transition:1s;
+}
+
+
+/*LABEL FOR INPUTS**/
+

@@ -44,8 +44,58 @@ let bottomTeeths = [firstBottomTooth, secondBottomTooth, thirdBottomTooth, fourB
 let arrayOfStrings: string[] = ["Are you sure?", "STOOOOOP!!!", "You'll regret your actions!", "DON'T!!", "Soon you'll be tomato paste", "What if... you die?", "This one is safe", "Don't worry my friend", "Time is ticking.."]
 let randomNr: number = Math.floor(Math.random() * 5);
 
+interface Player{
+name: string | number,
+points: number,
+age: number
+}
+let myPlayer: Player;
 
-(() => {
+(function createStart () {
+let {btnSubmit,startDiv,inputName, inputAge} = createElements();
+
+btnSubmit.addEventListener("click", () => {
+myPlayer = createPlayer(inputName,inputAge);
+
+startDiv.remove();
+gameLogic(myPlayer);
+})
+})();
+
+function createPlayer (inputName:HTMLInputElement,
+inputAge:HTMLInputElement)
+:Player {
+
+let myPlayer:Player = {
+   name:inputName.value,
+   points:0,
+   age:Number(inputAge.value) 
+}
+return myPlayer;
+}
+
+function createElements():{ btnSubmit: HTMLButtonElement, startDiv: HTMLElement,inputName:HTMLInputElement, inputAge:HTMLInputElement }{
+const startDiv = document.createElement("div") as HTMLElement;
+startDiv.className="Start";
+const h1 = document.createElement("h1") as HTMLElement;
+const p = document.createElement("p") as HTMLElement;
+const inputName = document.createElement("input") as HTMLInputElement;
+const inputAge = document.createElement("input") as HTMLInputElement;
+
+
+const btnSubmit = document.createElement("button") as HTMLButtonElement;
+btnSubmit.innerText = "Let's go"
+h1.innerText = "Hi Player!";
+p.innerText = `Welcome to Chewer, please fill out your information and hit the button to start the game!`
+
+startDiv.append(h1,p,inputName, inputAge, btnSubmit);
+document.body.append(startDiv);
+return {btnSubmit, startDiv, inputName, inputAge };
+}
+
+// Gamelogic, takes in a random tooth that is falling down, if it doesnt fall down player gets a point
+function gameLogic (player:Player) {
+    console.log(player);
     const deadlyTooth = bottomTeeths.filter((tooth, index) => index === randomNr);
     const firstTooth = deadlyTooth?.[0] ?? null;
     const upperTeethDeadly = topTeeths.filter((tooth, index) => index === randomNr)
@@ -55,29 +105,30 @@ let randomNr: number = Math.floor(Math.random() * 5);
     if (firstTooth) {
         firstTooth.id = "deadly";
     }
-    let playerPoints = 0;
+
     let foundTooth:boolean = false;
     bottomTeeths.forEach(tooth => {
         tooth?.addEventListener("click", () => {
             
             console.log(tooth);
             if (tooth.id === "deadly" && UpperTeeth !== null) {
+                
                 UpperTeeth.id = "down";
                 setTimeout(() => {
-                    isGameover(playerPoints);
+                    isGameover(player.points);
                   }, 3000);
             foundTooth = true;
 
             } else if (tooth.id === "" && !foundTooth) {
                 console.log(foundTooth);
                 tooth.id = "sink";
-                playerPoints=  playerPoints + 1;
-                console.log(playerPoints);
+                player.points=  player.points + 1;
+                console.log(player.points);
             } 
         });
     })
 
-})();
+};
 
 let div = document.createElement("div");
 div.className = "text";
@@ -85,6 +136,7 @@ document.body.appendChild(div);
 
 let colors:string[] = ["red","blue","orange","purple","pink","green"];
 
+// Just some textstrings that are random written when mouseover
 (() => {
     bottomTeeths.forEach(tooth => {
         tooth?.addEventListener("mouseover", () => {
@@ -114,7 +166,7 @@ let Highscore:number[] = []; //vill vi göra ett object som ska vara en spelare,
 
 })();
 
-
+//RANDOM SUPER TOOTH?
 
 
 function isGameover (points:number):void {
@@ -132,7 +184,8 @@ function isGameover (points:number):void {
     
     gameoverDiv.append(h1,p, continueBtn);
     document.body.append(gameoverDiv);
-
+    //can we do like a gamble here? like you take in your totalpoints and if you guess the right box you can double
+    // or you will lose half of your points or keep the points you had.
 
     continueBtn.addEventListener("click", () => {
         location.reload();
@@ -150,6 +203,25 @@ function isGameover (points:number):void {
 // function topScore () {
 // presumably we could fit an array and list the best high score here.
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /***following blob***/
 // const section = document.querySelector("section");
