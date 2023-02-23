@@ -15,7 +15,7 @@ let fiveBottomTooth = document.querySelector(".toothDownFive")
 
 let bottomTeeths = [firstBottomTooth, secondBottomTooth, thirdBottomTooth, fourBottomTooth, fiveBottomTooth]
 
-let arrayOfStrings: string[] = ["Are you sure?", "STOOOOOP!!!", "You'll regret your actions!", "DON'T!!", "Soon you'll be tomato paste", "What if... you die?", "This one is safe", "Don't worry my friend", "Time is ticking.."]
+let arrayOfStrings: string[] = ["Are you sure?", "STOOOOOP!!!", "You'll regret your actions!", "DON'T!!", "Soon you'll be tomato paste", "What if... you die?", "This one is safe", "Don't worry my friend", "Time is ticking..", "YOU WILL GET SMASHED"]
 let randomNr: number = Math.floor(Math.random() * 5);
 
 interface Player {
@@ -101,7 +101,7 @@ function createElements(): { btnSubmit: HTMLButtonElement, startDiv: HTMLElement
 }
 
 // Gamelogic, takes in a random tooth that is falling down, if it doesnt fall down player gets a point
-function gameLogic(player: Player) {
+const gameLogic = (player: Player) => {
     console.log(player);
     const deadlyTooth = bottomTeeths.filter((tooth, index) => index === randomNr);
     const firstTooth = deadlyTooth?.[0] ?? null;
@@ -159,8 +159,8 @@ let colors: string[] = ["red", "blue", "orange", "purple", "pink", "green"];
     })
 })();
 
-function randColors(arr: any[]): string { 
-    const choosenColor = colors[Math.floor(Math.random() * colors.length)]
+const randColors = (arr: string[]): string => { 
+    const choosenColor = arr[Math.floor(Math.random() * colors.length)]
     return choosenColor;
 }
 
@@ -171,7 +171,7 @@ function randColors(arr: any[]): string {
 
 
 
-function isGameover(player: Player): void {
+const isGameover = (player: Player): void => {
     Highscore.push(player);
     localStorage.setItem("highscore", JSON.stringify(Highscore));
     console.log(Highscore);
