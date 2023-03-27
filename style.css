@@ -11,6 +11,7 @@
     box-sizing:border-box;
 }
 
+
 body{
     background:#004643;
     height:100vh;
@@ -82,6 +83,11 @@ header > h1 {
     }
   }
 
+  .mouth{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
 section{
     height:60vh;
     width:100%;
@@ -298,3 +304,114 @@ margin:10px;
 
 /*LABEL FOR INPUTS**/
 
+/* iPads */
+@media only screen and (min-device-width: 725px) and (max-device-width: 1024px) {
+
+    header > h1{
+        font-size:55px;
+    }
+    section{
+        width:100%;
+    }
+  }
+  
+  /* iPhones */
+  @media only screen and (max-device-width: 724px) {
+    /* CSS styles for iPhones go here */
+
+    header {
+        font-size:20px;
+    }
+    header > h1 {
+        letter-spacing: 10px;
+        text-shadow: 3px 3px black;
+    }
+   
+    .mouth {
+        display:flex;
+        justify-content: center;
+    }
+    
+    section{
+        width:50%;
+    }
+    .toothUpOne, .toothUpTwo, .toothUpThree, .toothUpFour, .toothUpFive {
+        position:absolute;
+        width:45px;
+        height:50px;
+        background-color:rgba(255, 255, 255, 0.715);
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        animation-name:slideup;
+        animation-duration:3s;
+        top:100px;
+        box-shadow: 3px 2px 2px 2px black;
+    }
+
+    .toothUpOne {
+        left:13px;
+    }
+    .toothUpTwo {
+        left:87px;
+        
+    }
+    .toothUpThree {
+        left:163px;
+    }
+    .toothUpFour {
+        left:237px;
+    }
+    .toothUpFive {
+        left:313px;
+    }
+
+    section > .toothDownOne, .toothDownTwo,.toothDownThree, .toothDownFour, .toothDownFive {
+        height:50px;
+        width:120px;
+ 
+    }
+    #sink{
+        height:30px;
+        
+    }
+
+    #down{
+        top:340px;
+        transition:0.5s;
+        background-color: rgb(0, 0, 0);
+    }
+    .text {
+        width:100%;
+    }
+  }
+  
+
+  @media screen and (max-height: 800px) {
+    /* CSS rules for devices with a minimum width of 768px and a minimum height of 600px */
+
+   #down{
+    top:250px;
+    transition:0.5s;
+    background-color: rgb(0, 0, 0);
+}
+}
+
+@media screen and (max-height: 600px) {
+    /* CSS rules for devices with a minimum width of 768px and a minimum height of 600px */
+
+   #down{
+    top:190px;
+
+}
+
+}
+
+
+@media screen and (min-width: 800px) and (max-height: 799px) {
+    .toothUpOne, .toothUpTwo, .toothUpThree, .toothUpFour, .toothUpFive {
+        top:75px;
+    }
+    #down{
+        top:150px;
+    }
+  }
